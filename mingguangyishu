@@ -1,0 +1,28 @@
+var fixedMail = document.querySelector("#fixed_mail");
+        document.body.addEventListener("touchstart", function (e) {
+            if (e.target.id != "fixed_mail") {
+                fnHide();
+            } else {
+                e.stopPropagation();
+                return null;
+            }
+        }, false);
+							
+				document.body.addEventListener("touchmove", function(e){
+					  //e.preventDefault();
+						fnHide();
+				}, false);	
+				document.body.addEventListener("touchend", function(e){
+					  fnDisplay();
+				}, false);	
+				
+        function fnHide(e) {
+            clearInterval(fixedMail.timer);
+            $(fixedMail).stop().hide();		
+        }
+
+        function fnDisplay(e) {
+            fixedMail.timer = setTimeout(function () {
+                $(fixedMail).stop().fadeIn();
+            }, 400);
+        }
