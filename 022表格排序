@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style type="text/css">
+        table,th,td{
+            border: 1px solid #000000;
+            border-collapse: collapse;
+            padding: 10px;
+            margin: 10px auto;
+        }
+    </style>
+</head>
+<body>
+<table>
+    <thead>
+        <th>name</th>
+        <th>aa</th>
+        <th>bb</th>
+        <th>cc</th>
+    </thead>
+    <tbody>
+    <tr>
+        <td>王二</td>
+        <td>63</td>
+        <td>75</td>
+        <td>54</td>
+    </tr>
+    <tr>
+        <td>孙三</td>
+        <td>85</td>
+        <td>75</td>
+        <td>91</td>
+    </tr>
+    <tr>
+        <td>赵四</td>
+        <td>45</td>
+        <td>82</td>
+        <td>34</td>
+    </tr>
+    <tr>
+        <td>钱于</td>
+        <td>42</td>
+        <td>85</td>
+        <td>65</td>
+    </tr>
+    <tr>
+        <td>于六</td>
+        <td>71</td>
+        <td>54</td>
+        <td>56</td>
+    </tr>
+    <tr>
+        <td>李一</td>
+        <td>74</td>
+        <td>65</td>
+        <td>47</td>
+    </tr>
+    </tbody>
+</table>
+<script type="text/javascript">
+    var oTable=document.getElementsByTagName("table").item(0);
+    var oThead=oTable.tHead;
+    var oTbody=oTable.tBodies.item(0);
+    var oRows=oTbody.rows;//HTMLCollection
+    var aRows=[].slice.call(oRows,0);  //IE6-8不好用，可以用try catch(e) for循环来为IE6-8处理
+    function rowSort(i,key){    //i为例索引号
+        if(!key.flag){
+            key.flag=1;
+        }else{
+            key.flag*=-1;
+        }
+        aRows.sort(function(a,b){
+            if(Number(a.cells[i].innerHTML)){
+                return key.flag*(a.cells[i].innerHTML- b.cells[i].innerHTML); //是数字
+            }else{
+                return key.flag*(a.cells[i].innerHTML.localeCompare(b.cells[i].innerHTML));  //汉字以字母大小 a<b(-1) a>b(1) a=b(0)
+            }
+        });
+
+        for(var n=0;n<aRows.length;n++){
+            oTbody.appendChild(aRows[n]);
+        }
+    }
+    var oThs=oThead.getElementsByTagName("th");
+    for(var i=0;i<oThs.length;i++){
+        (function(i){
+            oThs[i].onclick=function(){
+                rowSort(i,this);
+            }
+        })(i);
+    }
+</script>
+</body>
+</html>
