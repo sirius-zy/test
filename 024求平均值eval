@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script type="text/javascript">
+    //10个分数，去掉一个最高分，去掉一个最低分，求剩下的平均分
+
+     function average() {
+        var ary = arguments;  //取传入的数
+        console.log(ary);
+        [].sort.call(ary, function (a,b) {  //从小到大排列
+            return a-b;
+        });
+        console.log(ary);
+        [].pop.call(ary);   //去掉一个最高分
+        console.log(ary);
+        [].shift.call(ary);    //去掉一个最底分
+        console.log(ary);
+        return eval([].join.call(ary,"+"))/ary.length;    //求平均值
+    }
+
+    var aveValue=average(20, 52, 65, 72, 24, 84, 31, 85, 83, 64);
+    console.log(aveValue);
+</script>
+</body>
+</html>
