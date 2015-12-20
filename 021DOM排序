@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<ul>
+    <li>45</li>
+    <li>21</li>
+    <li>05</li>
+    <li>80</li>
+    <li>35</li>
+    <li>84</li>
+    <li>65</li>
+    <li>42</li>
+</ul>
+<script type="text/javascript">
+    var oUl = document.getElementsByTagName("ul")[0];
+    //或
+    //var oUl = document.getElementsByTagName("ul").item(0);
+    var oLis = document.getElementsByTagName("li");
+    var ary = [];
+    //    for(var i=0;i<oLis.length;i++){      //类数组转数组
+    //        ary.push(oLis[i]);
+    //    }
+    //或
+    //ary=[].slice.call(oLis,0);
+    //或
+    //ary=Array.prototype.slice.call(oLis,0);
+    ary.sort(function (a, b) {
+        return a.innerHTML - b.innerHTML;
+    });
+    for (var i = 0; i < ary.length; i++) {
+        oUl.appendChild(ary[i]);
+    }
+    console.log(ary);
+</script>
+</body>
+</html>
